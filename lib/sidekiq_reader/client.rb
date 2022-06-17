@@ -25,7 +25,8 @@ module SidekiqReader
         busy_process: View::BusyProcess.with_client(self),
         enqueued: View::Enqueued.with_client(self),
         queue: View::Queue.with_client(self),
-        retries: View::Retries.with_client(self)
+        retries: View::Retries.with_client(self),
+        scheduled: View::Scheduled.with_client(self)
       }
     end
   end
