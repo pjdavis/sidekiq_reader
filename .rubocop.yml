@@ -1,0 +1,24 @@
+AllCops:
+  TargetRubyVersion: 2.7.6
+  NewCops: enable
+
+require:
+  - rubocop-rake
+  - rubocop-rspec
+
+Metrics/AbcSize:
+  Exclude:
+    - lib/sidekiq_reader/response_mapping/**/*
+    - lib/sidekiq_reader/cli.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - lib/sidekiq_reader/response_mapping/**/*
+    - lib/sidekiq_reader/cli.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+Style/Documentation:
+  Enabled: false

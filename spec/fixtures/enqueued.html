@@ -1,0 +1,345 @@
+<!doctype html>
+<html dir="ltr">
+<head>
+  <title>Sidekiq</title>
+  <meta charset="utf-8" />
+  <script type="text/javascript"></script>
+  <script type="text/javascript"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+  <link href="/sidekiq/stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+
+
+  <link href="/sidekiq/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/sidekiq/stylesheets/application-dark.css" media="screen and (prefers-color-scheme: dark)" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" href="/sidekiq/images/apple-touch-icon.png">
+  <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico" />
+  <script type="text/javascript" src="/sidekiq/javascripts/application.js"></script>
+  <meta name="google" content="notranslate" />
+
+</head>
+<body class="admin" data-poll-path="" data-locale="en">
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header" data-navbar="static">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-toggle collapsed navbar-livereload">
+
+
+        <a id="live-poll" class="btn btn-primary" href="/sidekiq/queues/queue1?poll=true">Live Poll</a>
+
+
+
+
+      </div>
+      <a class="navbar-brand" href="/sidekiq/">
+        Sidekiq
+        <span class="status">
+  <i class="status-sprite status-active"></i>
+  active
+</span>
+
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      <ul class="nav navbar-nav" data-navbar="static">
+
+
+        <li class="">
+          <a href="/sidekiq/">Dashboard</a>
+        </li>
+
+
+
+        <li class="">
+          <a href="/sidekiq/busy">Busy</a>
+        </li>
+
+
+
+        <li class="active">
+          <a href="/sidekiq/queues">Queues</a>
+        </li>
+
+
+
+        <li class="">
+          <a href="/sidekiq/retries">Retries</a>
+        </li>
+
+
+
+        <li class="">
+          <a href="/sidekiq/scheduled">Scheduled</a>
+        </li>
+
+
+
+        <li class="">
+          <a href="/sidekiq/morgue">Dead</a>
+        </li>
+
+
+        <li class="navbar-livereload">
+          <div class="poll-wrapper">
+
+
+            <a id="live-poll" class="btn btn-primary" href="/sidekiq/queues/queue1?poll=true">Live Poll</a>
+
+
+
+
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 summary_bar">
+        <ul class="list-unstyled summary row">
+          <li class="processed col-sm-1">
+            <span class="count">10</span>
+            <span class="desc">Processed</span>
+          </li>
+          <li class="failed col-sm-1">
+            <span class="count">0</span>
+            <span class="desc">Failed</span>
+          </li>
+          <li class="busy col-sm-1">
+            <a href="/sidekiq/busy">
+              <span class="count">0</span>
+              <span class="desc">Busy</span>
+            </a>
+          </li>
+          <li class="enqueued col-sm-1">
+            <a href="/sidekiq/queues">
+              <span class="count">0</span>
+              <span class="desc">Enqueued</span>
+            </a>
+          </li>
+          <li class="retries col-sm-1">
+            <a href="/sidekiq/retries">
+              <span class="count">0</span>
+              <span class="desc">Retries</span>
+            </a>
+          </li>
+          <li class="scheduled col-sm-1">
+            <a href="/sidekiq/scheduled">
+              <span class="count">0</span>
+              <span class="desc">Scheduled</span>
+            </a>
+          </li>
+          <li class="dead col-sm-1">
+            <a href="/sidekiq/morgue">
+              <span class="count">0</span>
+              <span class="desc">Dead</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="col-sm-12">
+        <header class="row">
+          <div class="col-sm-5">
+            <h3>
+              Current jobs in <span class='title'>queue1</span>
+
+              <span class="badge badge-secondary">6</span>
+            </h3>
+          </div>
+          <div class="col-sm-4 pull-right flip">
+
+
+          </div>
+        </header>
+        <div class="table_container">
+          <table class="queue table table-hover table-bordered table-striped">
+            <thead>
+            <th><a href="/sidekiq/queues/queue1?direction=asc"># &darr;</a></th>
+            <th>Job</th>
+            <th>Arguments</th>
+            <th></th>
+            </thead>
+
+            <tr>
+
+              <td>6</td>
+
+              <td>
+                QueueWorker
+
+              </td>
+              <td>
+
+
+
+
+              </td>
+              <td>
+                <form action="/sidekiq/queues/queue1/delete" method="post">
+                  <input type='hidden' name='authenticity_token' value='token'/>
+                  <input name="key_val" value="{&quot;retry&quot;:true,&quot;queue&quot;:&quot;queue1&quot;,&quot;backtrace&quot;:true,&quot;class&quot;:&quot;QueueWorker&quot;,&quot;args&quot;:[],&quot;jid&quot;:&quot;e805f97cd68a66949d2fca36&quot;,&quot;created_at&quot;:1655092800.1788912,&quot;enqueued_at&quot;:1655179210.6719565}" type="hidden" />
+                  <input class="btn btn-danger btn-xs" type="submit" name="delete" value="Delete" data-confirm="Are you sure?" />
+                </form>
+              </td>
+            </tr>
+
+            <tr>
+
+              <td>5</td>
+
+              <td>
+                QueueWorker
+
+              </td>
+              <td>
+
+
+
+
+              </td>
+              <td>
+                <form action="/sidekiq/queues/queue1/delete" method="post">
+                  <input type='hidden' name='authenticity_token' value='token'/>
+                  <input name="key_val" value="{&quot;retry&quot;:true,&quot;queue&quot;:&quot;queue1&quot;,&quot;backtrace&quot;:true,&quot;class&quot;:&quot;QueueWorker&quot;,&quot;args&quot;:[],&quot;jid&quot;:&quot;afbc1bd80599c615fb9c3f5e&quot;,&quot;created_at&quot;:1655006400.2106783,&quot;enqueued_at&quot;:1655092808.721892}" type="hidden" />
+                  <input class="btn btn-danger btn-xs" type="submit" name="delete" value="Delete" data-confirm="Are you sure?" />
+                </form>
+              </td>
+            </tr>
+
+            <tr>
+
+              <td>4</td>
+
+              <td>
+                QueueWorker
+
+              </td>
+              <td>
+
+
+
+
+              </td>
+              <td>
+                <form action="/sidekiq/queues/queue1/delete" method="post">
+                  <input type='hidden' name='authenticity_token' value='token'/>
+                  <input name="key_val" value="{&quot;retry&quot;:true,&quot;queue&quot;:&quot;queue1&quot;,&quot;backtrace&quot;:true,&quot;class&quot;:&quot;QueueWorker&quot;,&quot;args&quot;:[],&quot;jid&quot;:&quot;dafc470e465940cff21d0e0b&quot;,&quot;created_at&quot;:1654920000.1235166,&quot;enqueued_at&quot;:1655006407.3539722}" type="hidden" />
+                  <input class="btn btn-danger btn-xs" type="submit" name="delete" value="Delete" data-confirm="Are you sure?" />
+                </form>
+              </td>
+            </tr>
+
+            <tr>
+
+              <td>3</td>
+
+              <td>
+                QueueWorker
+
+              </td>
+              <td>
+
+
+
+
+              </td>
+              <td>
+                <form action="/sidekiq/queues/queue1/delete" method="post">
+                  <input type='hidden' name='authenticity_token' value='token'/>
+                  <input name="key_val" value="{&quot;retry&quot;:true,&quot;queue&quot;:&quot;queue1&quot;,&quot;backtrace&quot;:true,&quot;class&quot;:&quot;QueueWorker&quot;,&quot;args&quot;:[],&quot;jid&quot;:&quot;95d08d7252d5020c5b2fa3b1&quot;,&quot;created_at&quot;:1654833600.1240795,&quot;enqueued_at&quot;:1654920011.9257772}" type="hidden" />
+                  <input class="btn btn-danger btn-xs" type="submit" name="delete" value="Delete" data-confirm="Are you sure?" />
+                </form>
+              </td>
+            </tr>
+
+            <tr>
+
+              <td>2</td>
+
+              <td>
+                QueueWorker
+
+              </td>
+              <td>
+
+
+
+
+              </td>
+              <td>
+                <form action="/sidekiq/queues/queue1/delete" method="post">
+                  <input type='hidden' name='authenticity_token' value='token'/>
+                  <input name="key_val" value="{&quot;retry&quot;:true,&quot;queue&quot;:&quot;queue1&quot;,&quot;backtrace&quot;:true,&quot;class&quot;:&quot;QueueWorker&quot;,&quot;args&quot;:[],&quot;jid&quot;:&quot;23a6d6bd860df4d8e8a74ecc&quot;,&quot;created_at&quot;:1654747200.1077738,&quot;enqueued_at&quot;:1654833610.0592937}" type="hidden" />
+                  <input class="btn btn-danger btn-xs" type="submit" name="delete" value="Delete" data-confirm="Are you sure?" />
+                </form>
+              </td>
+            </tr>
+
+            <tr>
+
+              <td>1</td>
+
+              <td>
+                QueueWorker
+
+              </td>
+              <td>
+
+
+
+
+              </td>
+              <td>
+                <form action="/sidekiq/queues/queue1/delete" method="post">
+                  <input type='hidden' name='authenticity_token' value='token'/>
+                  <input name="key_val" value="{&quot;retry&quot;:true,&quot;queue&quot;:&quot;queue1&quot;,&quot;backtrace&quot;:true,&quot;class&quot;:&quot;QueueWorker&quot;,&quot;args&quot;:[],&quot;jid&quot;:&quot;9e5de7a286f21514173b816b&quot;,&quot;created_at&quot;:1654660800.1030822,&quot;enqueued_at&quot;:1654747215.49081}" type="hidden" />
+                  <input class="btn btn-danger btn-xs" type="submit" name="delete" value="Delete" data-confirm="Are you sure?" />
+                </form>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="navbar navbar-fixed-bottom navbar-inverse ltr">
+  <div class="navbar-inner">
+    <div class="container text-center">
+      <ul class="nav">
+        <li>
+          <p class="navbar-text product-version">Sidekiq v6.2.1</p>
+        </li>
+        <li>
+          <p class="navbar-text redis-url" title="redis://redis_url">redis://redis_url</p>
+        </li>
+        <li>
+          <p class="navbar-text server-utc-time">18:35:35 UTC</p>
+        </li>
+        <li>
+          <p class="navbar-text"><a style="color: gray;" href="https://github.com/mperham/sidekiq/wiki">docs</a></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

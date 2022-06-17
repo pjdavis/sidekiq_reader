@@ -1,0 +1,305 @@
+<!doctype html>
+<html dir="ltr">
+<head>
+  <title>Sidekiq</title>
+  <meta charset="utf-8" />
+  <script type="text/javascript"></script>
+  <script type="text/javascript"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+  <link href="/sidekiq/stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+
+
+  <link href="/sidekiq/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/sidekiq/stylesheets/application-dark.css" media="screen and (prefers-color-scheme: dark)" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" href="/sidekiq/images/apple-touch-icon.png">
+  <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico" />
+  <script type="text/javascript" src="/sidekiq/javascripts/application.js"></script>
+  <meta name="google" content="notranslate" />
+
+</head>
+<body class="admin" data-poll-path="" data-locale="en">
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header" data-navbar="static">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-toggle collapsed navbar-livereload">
+
+
+        <a id="live-poll" class="btn btn-primary" href="/sidekiq/retries?poll=true">Live Poll</a>
+
+
+
+
+      </div>
+      <a class="navbar-brand" href="/sidekiq/">
+        Sidekiq
+        <span class="status">
+  <i class="status-sprite status-active"></i>
+  active
+</span>
+
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      <ul class="nav navbar-nav" data-navbar="static">
+
+
+        <li class="">
+          <a href="/sidekiq/">Dashboard</a>
+        </li>
+
+
+
+        <li class="">
+          <a href="/sidekiq/busy">Busy</a>
+        </li>
+
+
+
+        <li class="">
+          <a href="/sidekiq/queues">Queues</a>
+        </li>
+
+
+
+        <li class="active">
+          <a href="/sidekiq/retries">Retries</a>
+        </li>
+
+
+
+        <li class="">
+          <a href="/sidekiq/scheduled">Scheduled</a>
+        </li>
+
+
+
+        <li class="">
+          <a href="/sidekiq/morgue">Dead</a>
+        </li>
+
+
+        <li class="navbar-livereload">
+          <div class="poll-wrapper">
+
+
+            <a id="live-poll" class="btn btn-primary" href="/sidekiq/retries?poll=true">Live Poll</a>
+
+
+
+
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="page">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 summary_bar">
+        <ul class="list-unstyled summary row">
+          <li class="processed col-sm-1">
+            <span class="count">10</span>
+            <span class="desc">Processed</span>
+          </li>
+          <li class="failed col-sm-1">
+            <span class="count">0</span>
+            <span class="desc">Failed</span>
+          </li>
+          <li class="busy col-sm-1">
+            <a href="/sidekiq/busy">
+              <span class="count">0</span>
+              <span class="desc">Busy</span>
+            </a>
+          </li>
+          <li class="enqueued col-sm-1">
+            <a href="/sidekiq/queues">
+              <span class="count">0</span>
+              <span class="desc">Enqueued</span>
+            </a>
+          </li>
+          <li class="retries col-sm-1">
+            <a href="/sidekiq/retries">
+              <span class="count">0</span>
+              <span class="desc">Retries</span>
+            </a>
+          </li>
+          <li class="scheduled col-sm-1">
+            <a href="/sidekiq/scheduled">
+              <span class="count">0</span>
+              <span class="desc">Scheduled</span>
+            </a>
+          </li>
+          <li class="dead col-sm-1">
+            <a href="/sidekiq/morgue">
+              <span class="count">0</span>
+              <span class="desc">Dead</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-sm-12">
+        <header class="row">
+          <div class="col-sm-5">
+            <h3>Retries</h3>
+          </div>
+
+          <div class="col-sm-4">
+
+            <ul class="pagination pull-right flip">
+              <li class="disabled">
+                <a href="/sidekiq/retries?page=1">&laquo;</a>
+              </li>
+
+              <li class="disabled">
+                <a href="/sidekiq/retries?page=1">1</a>
+              </li>
+
+              <li>
+                <a href="/sidekiq/retries?page=2">2</a>
+              </li>
+
+              <li class="">
+                <a href="/sidekiq/retries?page=10">&raquo;</a>
+              </li>
+            </ul>
+
+
+          </div>
+
+
+        </header>
+
+
+        <form action="/sidekiq/retries" method="post">
+          <input type='hidden' name='authenticity_token' value='umBGFHH7vm48ZNEl+mn6Y8mPHqYBBGj2aOB87xFC8OmRER3QrQCD5foNOF68eHuV3NTPzExBBIlCSGDuQwJFCQ=='/>
+          <div class="table_container">
+            <table class="table table-striped table-bordered">
+              <thead>
+              <tr>
+                <th class="table-checkbox checkbox-column">
+                  <label>
+                    <input type="checkbox" class="check_all" />
+                  </label>
+                </th>
+                <th>Next Retry</th>
+                <th>Retry Count</th>
+                <th>Queue</th>
+                <th>Job</th>
+                <th>Arguments</th>
+                <th>Error</th>
+              </tr>
+              </thead>
+
+              <tr>
+                <td class="table-checkbox">
+                  <label>
+                    <input type='checkbox' name='key[]' value='value1' />
+                  </label>
+                </td>
+                <td>
+                  <a href="/sidekiq/retries/value1"><time class="ltr" dir="ltr" title="2022-06-10T10:00:00Z" datetime="2022-06-10T10:00:00Z">2022-06-10T10:00:00Z</time></a>
+                </td>
+                <td>1</td>
+                <td>
+                  <a href="/sidekiq/queues/queue1">queue1</a>
+                </td>
+                <td>
+                  QueueWorker
+
+                </td>
+                <td>
+                  <div class="args">"arg1"</div>
+                </td>
+                <td>
+                  <div>RuntimeError: Invalid input.</div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="table-checkbox">
+                  <label>
+                    <input type='checkbox' name='key[]' value='value2' />
+                  </label>
+                </td>
+                <td>
+                  <a href="/sidekiq/retries/value2"><time class="ltr" dir="ltr" title="2022-06-10T10:00:00Z" datetime="2022-06-10T10:00:00Z">2022-06-10T10:00:00Z</time></a>
+                </td>
+                <td>1</td>
+                <td>
+                  <a href="/sidekiq/queues/queue2">queue2</a>
+                </td>
+                <td>
+                  QueueWorker
+
+                </td>
+                <td>
+                  <div class="args">"arg2"</div>
+                </td>
+                <td>
+                  <div>RuntimeError: Rate limit exceeded</div>
+                </td>
+              </tr>
+
+            </table>
+          </div>
+          <input class="btn btn-primary btn-xs pull-left flip" type="submit" name="retry" value="Retry Now" />
+          <input class="btn btn-danger btn-xs pull-left flip" type="submit" name="delete" value="Delete" />
+          <input class="btn btn-danger btn-xs pull-left flip" type="submit" name="kill" value="Kill" />
+        </form>
+
+
+        <form action="/sidekiq/retries/all/delete" method="post">
+          <input type='hidden' name='authenticity_token' value='token'/>
+          <input class="btn btn-danger btn-xs pull-right flip" type="submit" name="delete" value="Delete All" data-confirm="Are you sure?" />
+        </form>
+        <form action="/sidekiq/retries/all/retry" method="post">
+          <input type='hidden' name='authenticity_token' value='token'/>
+          <input class="btn btn-danger btn-xs pull-right flip" type="submit" name="retry" value="Retry All" data-confirm="Are you sure?" />
+        </form>
+        <form action="/sidekiq/retries/all/kill" method="post">
+          <input type='hidden' name='authenticity_token' value='token'/>
+          <input class="btn btn-danger btn-xs pull-right flip" type="submit" name="kill" value="Kill All" data-confirm="Are you sure?" />
+        </form>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="navbar navbar-fixed-bottom navbar-inverse ltr">
+  <div class="navbar-inner">
+    <div class="container text-center">
+      <ul class="nav">
+        <li>
+          <p class="navbar-text product-version">Sidekiq v6.2.1</p>
+        </li>
+        <li>
+          <p class="navbar-text redis-url" title="redis://redis_url">redis://redis_url</p>
+        </li>
+        <li>
+          <p class="navbar-text server-utc-time">20:06:08 UTC</p>
+        </li>
+        <li>
+          <p class="navbar-text"><a style="color: gray;" href="https://github.com/mperham/sidekiq/wiki">docs</a></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
