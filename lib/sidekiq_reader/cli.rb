@@ -41,6 +41,14 @@ module SidekiqReader
     end
     map %w[--retry -r] => :retry
 
+    desc 'scheduled', 'shows scheduled jobs'
+    def scheduled
+      client.scheduled.all.each do |scheduled|
+        puts [scheduled.when, scheduled.queue, scheduled.job, scheduled.arguments].join(', ')
+      end
+    end
+    map %w[--scheduled -s] => :scheduled
+
     private
 
     def client
