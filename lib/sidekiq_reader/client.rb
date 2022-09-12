@@ -2,10 +2,11 @@
 
 module SidekiqReader
   class Client
-    attr_reader :connection
+    attr_reader :connection, :config
 
-    def initialize(_option = {})
-      @connection = Connection.new
+    def initialize(config, _option = {})
+      @config = config
+      @connection = Connection.new(config)
       set_views
     end
 

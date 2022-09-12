@@ -2,8 +2,16 @@
 
 module SidekiqReader
   class CLI < Thor
+    CONFIG_OPTIONS = { url: :config_file,
+                       user: :basic_username,
+                       pass: :basic_password,
+                       config: :config_file }.freeze
     class_option :headers, type: :boolean, default: true
-    class_option :table, type: :boolean
+    class_option :table, type: :boolean, default: false
+
+    CONFIG_OPTIONS.keys.each do |option|
+      class_option option, type: :string, default: nil
+    end
 
     desc 'queues', 'Show Queues'
 
@@ -72,7 +80,12 @@ module SidekiqReader
     private
 
     def client
-      Client.new
+      Client.new(config)
+    end
+
+    def config
+      config_params = CONFIG_OPTIONS.map { |k, v| [v, options[k]] }.to_h.compact
+      Config.new(config_params)
     end
 
     def display(cols, data)

@@ -2,8 +2,10 @@
 
 module SidekiqReader
   class Connection
-    DEFAULT_URL = ENV.fetch('SIDEKIQ_URL', nil)
 
+    def initialize(config)
+      @config = config
+    end
     def get_page(url, parser = nil)
       resp = party.get(build_url(url), basic_auth: auth)
       if parser.nil?
@@ -16,13 +18,13 @@ module SidekiqReader
     private
 
     def build_url(url)
-      "#{DEFAULT_URL}#{url}"
+      "#{@config.sidekiq_url}#{url}"
     end
 
     def auth
       {
-        username: ENV.fetch('BASIC_USERNAME', nil),
-        password: ENV.fetch('BASIC_PASSWORD', nil)
+        username: @config.basic_username,
+        password: @config.basic_password
       }
     end
 

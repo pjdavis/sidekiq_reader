@@ -35,9 +35,10 @@ require_relative 'sidekiq_reader/view/queue'
 require_relative 'sidekiq_reader/view/retries'
 require_relative 'sidekiq_reader/view/scheduled'
 
-require_relative 'sidekiq_reader/table'
+require_relative 'sidekiq_reader/config'
 require_relative 'sidekiq_reader/connection'
 require_relative 'sidekiq_reader/client'
+require_relative 'sidekiq_reader/table'
 
 module SidekiqReader
 end
