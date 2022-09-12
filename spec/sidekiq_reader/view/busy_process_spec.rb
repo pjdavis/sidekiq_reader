@@ -3,6 +3,12 @@
 require 'spec_helper'
 
 RSpec.describe SidekiqReader::View::BusyProcess do
+  describe '.collection_class' do
+    it 'returns the BusyProcess collection class' do
+      expect(described_class.collection_class).to eq SidekiqReader::Collection::BusyProcess
+    end
+  end
+
   describe '#name' do
     it 'is present' do
       busy_name = described_class.new(name: 'name')

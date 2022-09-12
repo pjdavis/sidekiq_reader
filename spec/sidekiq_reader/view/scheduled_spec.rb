@@ -3,6 +3,12 @@
 require 'spec_helper'
 
 RSpec.describe SidekiqReader::View::Scheduled do
+  describe '.collection_class' do
+    it 'returns the Scheduled collection class' do
+      expect(described_class.collection_class).to eq SidekiqReader::Collection::Scheduled
+    end
+  end
+
   describe '#when' do
     it 'is present' do
       scheduled = described_class.new(when: '2022-01-01 00:00:00')

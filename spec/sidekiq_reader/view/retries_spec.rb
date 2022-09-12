@@ -3,6 +3,12 @@
 require 'spec_helper'
 
 RSpec.describe SidekiqReader::View::Retries do
+  describe '.collection_class' do
+    it 'returns the Retries collection class' do
+      expect(described_class.collection_class).to eq SidekiqReader::Collection::Retries
+    end
+  end
+
   describe '#next_retry' do
     it 'is present' do
       retries = described_class.new(next_retry: '2022-01-01 00:00:00')

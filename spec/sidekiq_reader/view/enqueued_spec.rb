@@ -23,6 +23,12 @@ RSpec.describe SidekiqReader::View::Enqueued do
     end
   end
 
+  describe '.collection_class' do
+    it 'returns the Collection::Enqueued class' do
+      expect(described_class.collection_class).to eq SidekiqReader::Collection::Enqueued
+    end
+  end
+
   describe '#number' do
     it 'is present' do
       enqueued = described_class.new(number: '1')

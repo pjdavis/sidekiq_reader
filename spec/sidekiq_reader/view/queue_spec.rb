@@ -3,6 +3,12 @@
 require 'spec_helper'
 
 RSpec.describe SidekiqReader::View::Queue do
+  describe '.collection_class' do
+    it 'returns the Queue collection class' do
+      expect(described_class.collection_class).to eq SidekiqReader::Collection::Queue
+    end
+  end
+
   describe '#name' do
     it 'is present' do
       queue = described_class.new(name: 'TestQueue')
