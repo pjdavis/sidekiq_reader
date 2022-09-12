@@ -15,9 +15,9 @@ module SidekiqReader
 
     desc 'enqueued QUEUE', 'show all jobs in a queue'
 
-    def enqueued(_queue)
+    def enqueued(queue)
       cols = %w[number name arguments].freeze
-      data = client.queue.all.map { |queue| cols.map { |col| queue.send(col.to_sym) } }
+      data = client.enqueued.in(queue).all.map { |q| cols.map { |col| q.send(col.to_sym) } }
       display(cols, data)
     end
 
